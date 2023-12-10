@@ -1,0 +1,23 @@
+ALGORITHM check.algo
+VAR
+    arr: List of integers
+
+BEGIN
+    FOR i FROM 1 TO len(arr) - 1
+        current_element = arr[i]
+        j = i - 1
+
+        WHILE j >= 0 AND arr[j] > current_element
+            arr[j + 1] = arr[j]
+            j = j - 1
+
+        arr[j + 1] = current_element
+    END FOR
+
+    WITH open("sorted_array.txt", "w") AS file
+        # Write the sorted array to the file
+        file.write("Sorted Array: " + ',''.join(map(str, arr)))
+    END WITH
+
+    WRITE "Sorted Array has been written to 'sorted_array.txt'."
+END
